@@ -79,7 +79,19 @@ Where an agent discovers a merchant, fills a cart, and checks out.
 - [Nuvemshop / Tiendanube](https://www.nuvemshop.com.br) - the largest SMB commerce platform in the region ([tiendanube.com](https://www.tiendanube.com) in Spanish markets).
 - [Mercado Libre](https://www.mercadolibre.com) - the region's dominant marketplace and payments network (Mercado Pago).
 
-Native rails on these platforms are Pix and card; agentic-protocol (ACP/UCP/AP2) adoption is still early here. That gap is the opening. A platform-by-protocol-by-rail compatibility matrix is a work in progress, contributions welcome.
+### Compatibility (platform x protocol x rail)
+
+A best-effort snapshot. The pattern is the point: the LATAM-native platforms have the rails but not the agentic protocols yet, while the protocol-forward platforms need a local gateway to reach Pix. That gap is the opening. Corrections and additions welcome.
+
+| Platform | Pix | Card / boleto | ACP | UCP | AP2 | x402 |
+|---|---|---|---|---|---|---|
+| VTEX | yes | yes | emerging | emerging | no | no |
+| Nuvemshop / Tiendanube | yes | yes | no | no | no | no |
+| Mercado Livre | yes | yes | no | no | no | no |
+| Shopify | via gateway | yes | yes | yes | no | no |
+| WooCommerce | via plugin | yes | via plugin | via plugin | via plugin | no |
+
+"emerging" = announced or piloted, not generally available. "via gateway/plugin" = through a payment gateway or a community plugin, not native. x402 is a rail any platform can add; none of these ship it natively today.
 
 ## Rails & settlement
 
