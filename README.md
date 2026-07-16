@@ -19,6 +19,8 @@ The global agentic-commerce and x402 lists are excellent, and mostly written fro
 
 There is a layering worth keeping straight. The **commerce layer** is where an agent discovers a merchant, negotiates, and checks out (ACP, UCP, AP2). The **rails** sit beneath it and move the money (Pix, cards, stablecoins, x402). Any commerce protocol can plug into any rail. In Latin America the interesting rail is Pix, not a card, and an autonomous agent needs a scoped, capped, revocable mandate rather than a bearer credential. This list is organized that way.
 
+For the market view alongside this builder's index, CodeSpar maps the whole space, 236 companies across the stack, at [codespar.dev/map](https://codespar.dev/map).
+
 If you only read one thing, read the [Regulation & policy](#regulation--policy) section. It is the part no other list covers, and it is where the next two years are being decided.
 
 ## Glossary
