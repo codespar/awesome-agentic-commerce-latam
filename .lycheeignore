@@ -1,0 +1,27 @@
+# Volatile third-party x402 service endpoints (the "moving fast, changes weekly" set).
+# These are hackathon and early-startup hosts that flake from CI: timeouts, odd status
+# codes, transient connection failures. The directories in the README (Coinbase Bazaar,
+# x402scan, Agent402) are the live source of truth for these. Excluded here so that link
+# rot on our own links and the stable ecosystem is the only thing that fails the build.
+superhighway\.walls\.sh
+archtools\.dev
+glim\.sh
+devdrops\.run
+data\.crestsystems\.ai
+2s\.io
+econdash\.org
+mercury402\.uk
+usenami\.io
+stratalize\.com
+x402oracle\.com
+globalapi\.dev
+tx402\.ai
+api\.zeroreader\.com
+img402\.dev
+x402-video\.com
+hundun\.app
+payapi\.market
+logicnodes\.io
+x402engine\.app
+agentsvc\.io
+aisa\.network
