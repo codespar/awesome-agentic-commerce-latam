@@ -2,7 +2,7 @@
   <h1 align="center">Awesome Agentic Commerce LATAM 🌎</h1>
   <p align="center">
     <strong>The builder's index to AI agents that move money in Latin America.</strong><br>
-    <em>Pix and account-to-account rails, regulated cross-border, fiscal (NF-e), and the agent-payment protocols (x402, ACP, AP2, UCP, MPP) as they actually land in the region.</em>
+    <em>The commerce layer (ACP, UCP, AP2), the rails beneath it (Pix, x402, cards, stablecoins), the governance that makes agent spend safe, and the regulation that decides all of it.</em>
   </p>
   <p align="center">
     <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome" /></a>
@@ -15,141 +15,161 @@ Vendor-neutral. Maintained by [CodeSpar](https://codespar.dev). Contributions we
 
 ## Why this list
 
-The global agentic-commerce and x402 lists are excellent, and mostly written from the US and from crypto. They barely touch the rails most of the world actually pays on: Pix and account-to-account, boleto, regulated cross-border FX, and the tax document a purchase legally needs. In Latin America an autonomous agent does not need a card to pull; it needs a scoped, capped, revocable mandate and a rail that settles instantly with finality. This list curates the protocols, rails, tools, providers, and the regulation for building agent commerce here. Global tools are included when they matter for building in the region.
+The global agentic-commerce and x402 lists are excellent, and mostly written from the US and from crypto. They barely touch the rails most of the world actually pays on: Pix and account-to-account, boleto, regulated cross-border FX, and the tax document a purchase legally needs.
+
+There is a layering worth keeping straight. The **commerce layer** is where an agent discovers a merchant, negotiates, and checks out (ACP, UCP, AP2). The **rails** sit beneath it and move the money (Pix, cards, stablecoins, x402). Any commerce protocol can plug into any rail. In Latin America the interesting rail is Pix, not a card, and an autonomous agent needs a scoped, capped, revocable mandate rather than a bearer credential. This list is organized that way.
 
 If you only read one thing, read the [Regulation & policy](#regulation--policy) section. It is the part no other list covers, and it is where the next two years are being decided.
 
+## Glossary
+
+Agentic commerce has an acronym-collision problem. In this list:
+
+- **ACP** - Agentic Commerce Protocol (OpenAI + Stripe). Not IBM's Agent Communication Protocol.
+- **UCP** - Universal Commerce Protocol (Google + Shopify).
+- **AP2** - Agent Payments Protocol (Google).
+- **MCP** - Model Context Protocol (Anthropic), how agents call tools. Not a payment protocol.
+- **MPP** - Machine Payments Protocol (Tempo + Stripe).
+- **x402** - the HTTP 402 pay-per-request rail (Coinbase), settled in stablecoin.
+- **KYA** - Know Your Agent: a verifiable agent identity plus a signed mandate and receipt.
+- **Mandate** - a signed, capped, revocable authorization an agent spends under.
+- **Pix / Pix Automático** - Brazil's instant account-to-account rail / its recurring standing-authorization modality.
+- **ITP** - Iniciador de Transação de Pagamento, Pix payment initiation under Open Finance.
+- **eFX** - electronic FX (câmbio), the regulated cross-border rail (see Resolução BCB 561).
+- **NF-e / NFS-e** - the Brazilian product / service electronic invoice.
+
+## Pick a rail or protocol
+
+A rough decision guide. Mix freely; a protocol and a rail are different choices.
+
+- Selling into ChatGPT, or already on Stripe? Use **ACP**.
+- Targeting Google surfaces (Search, Gemini)? Use **UCP**.
+- Autonomous agent-to-agent, or machine-to-machine at the HTTP layer? **AP2** or **x402**.
+- Charging per API call or per tool? **x402** (USDC), or **MPP**.
+- Buyer in Brazil, human or agent? **Pix**; if it recurs, **Pix Automático**.
+- Cross-border settlement? Stablecoin (**USDC** over x402), or licensed **eFX** where the regulator requires it (see [Regulation](#regulation--policy)).
+- Need the buyer to be governable, with a cap, an allowlist, and a receipt? Put a **signed mandate** on top of whichever rail you chose.
+
 ## Contents
 
-- [Protocols & standards](#protocols--standards)
-- [Facilitators & gateways](#facilitators--gateways)
-- [x402 services & endpoints](#x402-services--endpoints)
-- [Wallets, mandates & spend controls](#wallets-mandates--spend-controls)
-- [Agent identity & receipts](#agent-identity--receipts)
-- [Rails (LATAM)](#rails-latam)
-- [LATAM providers & infrastructure](#latam-providers--infrastructure)
-- [Fiscal & compliance](#fiscal--compliance)
-- [SDKs, runtimes & MCP](#sdks-runtimes--mcp)
-- [Demos & live paywalls](#demos--live-paywalls)
+- [Commerce layer](#commerce-layer)
+- [Rails & settlement](#rails--settlement)
+- [Governance & trust](#governance--trust)
+- [LATAM providers & fiscal](#latam-providers--fiscal)
 - [Regulation & policy](#regulation--policy)
-- [Market maps & landscapes](#market-maps--landscapes)
+- [Discovery & anti-patterns](#discovery--anti-patterns)
+- [Working examples](#working-examples)
+- [Maintainer's packages](#maintainers-packages)
 - [Related lists](#related-lists)
 - [Reading & research](#reading--research)
 
-## Protocols & standards
+## Commerce layer
 
-- [x402](https://github.com/coinbase/x402) - HTTP 402 Payment Required, revived by Coinbase. Pay-per-request, settled in stablecoin, no account and no human checkout. The machine-payment primitive.
-- [Agentic Commerce Protocol (ACP)](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) - OpenAI + Stripe. Delegated payment for agentic checkout. Card-first today.
+Where an agent discovers a merchant, fills a cart, and checks out.
+
+### Protocols
+
+- [Agentic Commerce Protocol (ACP)](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) - OpenAI + Stripe. Delegated payment for agentic checkout, card-first today. Live in ChatGPT.
+- [Universal Commerce Protocol (UCP)](https://github.com/Universal-Commerce-Protocol/ucp) - Google + Shopify (announced January 2026). Discovery, cart, checkout, orders, delivery. Spec at [ucp.dev](https://ucp.dev).
 - [Agent Payments Protocol (AP2)](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) - Google. Mandate-centric, "Human Not Present" pre-authorized payments; contributed to the FIDO Alliance.
-- [Universal Commerce Protocol (UCP)](https://github.com/Universal-Commerce-Protocol/ucp) - open agentic-commerce protocol co-developed by Google and Shopify (announced January 2026); agents discover products, fill carts, and check out. Spec at [ucp.dev](https://ucp.dev).
-- [Machine Payments Protocol (MPP)](https://mpp.dev) - open machine-to-machine payment standard co-authored by Tempo and Stripe, proposed to the IETF. HTTP 402-based, with a "sessions" primitive that streams micropayments under an upfront spending limit; settles in stablecoins (Tempo), cards (Stripe/Visa), and Lightning.
-- [agentic-payments-standards](https://github.com/codespar/agentic-payments-standards) - CodeSpar's open proposals: a KYA agent-identity format with a dependency-free offline verifier, a push-rail / mandate-delegated payment handler proposed for ACP (Pix as the reference implementation), and a Pix + delivery-record + mandate proposal for Open Agentic Commerce.
 
-## Facilitators & gateways
+### Platforms (LATAM)
 
-- [Coinbase CDP x402 Facilitator](https://docs.cdp.coinbase.com/x402) - reference x402 facilitator and the Bazaar marketplace of agent-payable endpoints, on Base.
-- [xpay](https://xpay.sh) - two-sided MCP-native marketplace and payment layer; runs a public x402 facilitator, supports MPP and cards. US and crypto-first, no Pix or regulated LATAM rails.
-- [CodeSpar Gateway](https://docs.codespar.dev) - turns any endpoint into an agent-payable one (x402 on Base mainnet), paired with a signed mandate and a hash-chained receipt, and bridged to Pix so a local service can be paid in BRL while the agent pays in USDC.
-- [Cloudflare x402](https://blog.cloudflare.com/x402/) - edge facilitator with payment verification and deferred settlement.
+- [VTEX](https://vtex.com) - enterprise commerce platform across LATAM; launched WhatsApp-plus-Pix checkout with Meta.
+- [Nuvemshop / Tiendanube](https://www.nuvemshop.com.br) - the largest SMB commerce platform in the region ([tiendanube.com](https://www.tiendanube.com) in Spanish markets).
+- [Mercado Libre](https://www.mercadolibre.com) - the region's dominant marketplace and payments network (Mercado Pago).
 
-## x402 services & endpoints
+Native rails on these platforms are Pix and card; agentic-protocol (ACP/UCP/AP2) adoption is still early here. That gap is the opening. A platform-by-protocol-by-rail compatibility matrix is a work in progress, contributions welcome.
 
-The x402 endpoint economy is global, crypto-settled, and moving fast: hundreds of paid APIs are live and the set changes weekly. Latin America is barely represented here yet, which is the opening. Start from the directories, then a representative sample.
+## Rails & settlement
 
-Directories:
+These sit below the commerce layer and move the money. No FX: each rail carries its own price.
 
-- [Coinbase Bazaar](https://docs.cdp.coinbase.com/x402) - the official CDP registry of x402-payable endpoints.
-- [x402scan](https://www.x402scan.com) - community-maintained directory of live x402 services.
-- [Agent402 Index](https://agent402.tools) - a public routing index of agent-payable tools.
-
-Services are pay-per-call in USDC on Base. This is a representative slice; the directories above hold the full live set.
-
-Data and search:
-
-- [Superhighway](https://superhighway.walls.sh) - web search for agents, five tools at $0.001 per query.
-- [Arch Tools](https://archtools.dev) - 58 API tools for agents (web scraping, crypto data, OCR).
-- [glim.sh](https://glim.sh) - live web, social, and GitHub data via 11 MCP tools.
-- [DevDrops](https://devdrops.run) - 22 data APIs for agents ($0.001-$0.10).
-- [Crest x402 Data](https://data.crestsystems.ai) - wallet profiling and crypto data ($0.002-$0.90).
-- [2s.io](https://2s.io) - 35 JSON API endpoints, sub-cent to $0.03.
-
-Markets and finance:
-
-- [EconDash](https://econdash.org) - global macroeconomic data across 15 endpoints.
-- [Mercury402](https://mercury402.uk) - US Treasury and macro data.
-- [Usenami](https://usenami.io) - perp funding and RWA spread API.
-- [Stratalize](https://www.stratalize.com) - 100+ financial-intelligence tools ($0.02-$1.00).
-
-Security and risk:
-
-- [RugGuard](https://rugguard.redfleet.fr) - pre-trade rug-check API ($0.005-$0.05).
-- [x402 Trust Oracle](https://x402oracle.com) - pre-trade trust checks ($0.002).
-- [GlobalAPI](https://globalapi.dev) - 43 compliance endpoints ($0.002-$0.10).
-
-Compute and media:
-
-- [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models ($0.002-$0.05).
-- [zeroreader](https://api.zeroreader.com) - 74 endpoints for LLM, generation, and crypto ($0.001-$0.015).
-- [img402](https://img402.dev) - image hosting for agents ($0.01-$1.00).
-- [x402 Video](https://x402-video.com) - AI video generation ($0.05-$0.50 per video).
-- [hundun.app](https://hundun.app) - AI document summarization ($0.05).
-
-Marketplaces and aggregators:
-
-- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints ($0.001-$0.01).
-- [LogicNodes](https://logicnodes.io) - 619 deterministic microservices ($0.001-$0.50).
-- [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
-- [agentsvc.io](https://agentsvc.io) - 20 utility tools ($0.001-$0.008).
-- [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
-
-## Wallets, mandates & spend controls
-
-- [CodeSpar wallet + mandate engine](https://codespar.dev) - multi-slot wallet (BRL + USDC, per-currency caps, no synthetic FX) with signed mandates enforced before any payment: per-transaction cap, total cap, expiry, agent match, and a payee allowlist so a leaked mandate cannot be redirected.
-- [Crossmint](https://www.crossmint.com) - agent wallets and stablecoin payments infrastructure.
-- [Skyfire](https://skyfire.xyz) - identity and payments for AI agents; a KYA-style verification plus settlement.
-- [Catena Labs](https://catenalabs.com) - agent-native financial institution and mandate tooling.
-- [Payman](https://paymanai.com) - human-in-the-loop payment controls for AI agents.
-- [MoltsPay](https://github.com/Yaqing2023/moltspay) - payment infrastructure for AI agents with spending limits and framework integrations (LangChain, CrewAI); settles USDC.
-
-## Agent identity & receipts
-
-- [KYA (Know Your Agent)](https://codespar.dev/trust) - CodeSpar's signed-mandate and receipt format plus a dependency-free offline verifier. Ed25519 keypair per agent, `did:web` identity, and a hash-chained receipt (mandate → quote → payment → delivery) that anyone can verify offline. "Know the agent, trust the money."
-- [ERC-8004: Trustless Agents](https://eips.ethereum.org/EIPS/eip-8004) - Ethereum standard extending A2A with three on-chain registries (Identity, Reputation, Validation) so agents can be discovered and trusted across organizations. Deployed on mainnet and 20+ networks.
-- FIDO Alliance, Agentic Authentication working groups - device-bound agent authentication feeding AP2.
-
-## Rails (LATAM)
+### Local rails
 
 - [Pix](https://www.bcb.gov.br/en/financialstability/pix_en) - Brazil's instant account-to-account rail. Real-time, no chargeback, above 76% of Brazilian adults, roughly R$35 trillion cleared in 2025. The default rail for agent payments in Brazil.
-- [Pix Automático](https://www.bcb.gov.br/en/financialstability/pix_en) - the recurring standing-authorization modality of Pix (live since 2025). A signed, capped, revocable standing consent, which is structurally the agent mandate.
+- [Pix Automático](https://mobileecosystemforum.com/2025/06/03/brazils-payment-revolution-accelerates-pix-automatico-launches/) - the recurring standing-authorization modality of Pix (live since 2025). A signed, capped, revocable standing consent, which is structurally the agent mandate.
 - Boleto - the cash / bank-slip rail, still meaningful for the underbanked buyer.
-- [USDC on Base](https://www.circle.com/usdc) - the stablecoin settlement rail for cross-border and x402.
-- SPEI (Mexico), PSE (Colombia), Transferencias 3.0 (Argentina), and other account-to-account rails across the region.
+- SPEI (Mexico), PSE (Colombia), Transferencias 3.0 (Argentina) - the other account-to-account rails across the region.
 
-## LATAM providers & infrastructure
+### Cards & stablecoins
+
+- [USDC on Base](https://www.circle.com/usdc) - the stablecoin settlement rail for cross-border and x402.
+- Card networks - Visa (Intelligent Commerce) and Mastercard (Agent Pay), now live with Brazilian issuers.
+
+### x402
+
+The HTTP 402 pay-per-request rail. An agent hits an endpoint, is asked for a few cents, pays in stablecoin, and gets the resource. The endpoint economy is global, crypto-settled, and moving fast; LATAM is barely represented, which is the opening.
+
+- [x402](https://github.com/coinbase/x402) - the protocol, by Coinbase. SDKs in [TypeScript](https://github.com/coinbase/x402/tree/main/typescript), [Python](https://pypi.org/project/x402/), and [Rust](https://github.com/x402-rs/x402-rs).
+
+Facilitators:
+
+- [Coinbase CDP x402 Facilitator](https://docs.cdp.coinbase.com/x402) - the reference facilitator and the Bazaar marketplace of agent-payable endpoints.
+- [xpay](https://xpay.sh) - a two-sided MCP-native marketplace running a public x402 facilitator. US and crypto-first.
+- [Cloudflare x402](https://blog.cloudflare.com/x402/) - edge facilitator with payment verification and deferred settlement.
+
+Directories of live endpoints:
+
+- [Coinbase Bazaar](https://docs.cdp.coinbase.com/x402) - the official CDP registry.
+- [x402scan](https://www.x402scan.com) - community-maintained directory.
+- [Agent402 Index](https://agent402.tools) - a public routing index of agent-payable tools.
+
+A representative slice of live services (pay-per-call in USDC on Base); browse the directories for the full set.
+
+- [Superhighway](https://superhighway.walls.sh) - web search for agents, five tools at $0.001 per query.
+- [Arch Tools](https://archtools.dev) - 58 API tools (web scraping, crypto data, OCR).
+- [glim.sh](https://glim.sh) - live web, social, and GitHub data via 11 MCP tools.
+- [DevDrops](https://devdrops.run) - 22 data APIs for agents.
+- [Crest x402 Data](https://data.crestsystems.ai) - wallet profiling and crypto data.
+- [2s.io](https://2s.io) - 35 JSON API endpoints, sub-cent to $0.03.
+- [EconDash](https://econdash.org) - global macroeconomic data.
+- [Mercury402](https://mercury402.uk) - US Treasury and macro data.
+- [Usenami](https://usenami.io) - perp funding and RWA spread API.
+- [Stratalize](https://www.stratalize.com) - 100+ financial-intelligence tools.
+- [RugGuard](https://rugguard.redfleet.fr) - pre-trade rug-check API.
+- [x402 Trust Oracle](https://x402oracle.com) - pre-trade trust checks.
+- [GlobalAPI](https://globalapi.dev) - 43 compliance endpoints.
+- [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models.
+- [zeroreader](https://api.zeroreader.com) - 74 endpoints for LLM, generation, and crypto.
+- [img402](https://img402.dev) - image hosting for agents.
+- [x402 Video](https://x402-video.com) - AI video generation.
+- [hundun.app](https://hundun.app) - AI document summarization.
+- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints.
+- [LogicNodes](https://logicnodes.io) - 619 deterministic microservices.
+- [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
+- [agentsvc.io](https://agentsvc.io) - 20 utility tools.
+- [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
+
+### MPP
+
+- [Machine Payments Protocol (MPP)](https://mpp.dev) - an open machine-to-machine payment standard co-authored by Tempo and Stripe, proposed to the IETF. HTTP 402-based, with a "sessions" primitive for streaming micropayments; settles in stablecoins (Tempo), cards (Stripe/Visa), and Lightning.
+
+## Governance & trust
+
+What makes it safe to hand a rail to an autonomous agent.
+
+### Wallets & mandates
+
+- [Crossmint](https://www.crossmint.com) - agent wallets and stablecoin payments infrastructure.
+- [Skyfire](https://skyfire.xyz) - identity and payments for AI agents.
+- [Catena Labs](https://catenalabs.com) - agent-native financial institution and mandate tooling.
+- [Payman](https://paymanai.com) - human-in-the-loop payment controls for AI agents.
+- [MoltsPay](https://github.com/Yaqing2023/moltspay) - payment infrastructure for agents with spending limits and framework integrations.
+
+### Agent identity & receipts
+
+- [ERC-8004: Trustless Agents](https://eips.ethereum.org/EIPS/eip-8004) - Ethereum standard extending A2A with Identity, Reputation, and Validation registries. Deployed on mainnet and 20+ networks.
+- FIDO Alliance, Agentic Authentication working groups - device-bound agent authentication feeding AP2.
+
+## LATAM providers & fiscal
 
 - [Celcoin](https://www.celcoin.com.br) - banking-as-a-service, Pix and boleto in Brazil.
 - [Iniciador](https://iniciador.com.br) - Pix payment initiation (ITP) under Open Finance; a complementary Pix-under-mandate rail.
-- [Pluggy](https://pluggy.ai) and [Belvo](https://belvo.com) - Open Finance data (read, and increasingly write) across LATAM.
+- [Pluggy](https://pluggy.ai) and [Belvo](https://belvo.com) - Open Finance data, read and increasingly write, across LATAM.
 - [Bridge](https://www.bridge.xyz) - stablecoin orchestration and settlement substrate.
 - Mercado Pago, dLocal, EBANX - large PSPs and cross-border money-movement in the region.
-
-## Fiscal & compliance
-
 - [NFE.io](https://nfe.io) and [Focus NFe](https://focusnfe.com.br) - programmatic Brazilian e-invoice (NF-e / NFS-e) issuance. A purchase is not legal in Brazil without the tax document, and no agent-payment protocol issues one, so this is a required layer for the sell-side.
-- KYC / KYB providers for onboarding the merchant and the agent operator.
-
-## SDKs, runtimes & MCP
-
-- [codespar](https://github.com/codespar/codespar) - MIT-licensed, self-hostable agent runtime and channel adapters for commerce agents (`pip install codespar`).
-- [MCP Dev LATAM](https://github.com/codespar/mcp-dev-latam) - 127 MCP servers wrapping LATAM commerce APIs (payments, fiscal, logistics, banking, ERP), live in the official MCP Registry.
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io) - the tool-calling standard agents use to reach these APIs.
-- [Composio](https://composio.dev) - global tool-calling / integration layer for agents.
-- x402 SDKs - [TypeScript](https://github.com/coinbase/x402/tree/main/typescript), [Python](https://pypi.org/project/x402/), and [Rust](https://github.com/x402-rs/x402-rs) implementations of the x402 protocol.
-
-## Demos & live paywalls
-
-- [CodeSpar x402 paywall](https://basescan.org/tx/0x739d2d12de75bb90fd92c2297b83c1da297b39cfb06fb0e24e09f4d5f32b1b8f) - a paywall on Base mainnet; here an agent pays $0.001 for a third-party API it discovered, verifiable on Basescan.
-- Vibe payments (CodeSpar) - an agent reads its balance, checks the mandate, pays a real store via Pix, and returns an audited receipt.
 
 ## Regulation & policy
 
@@ -158,24 +178,47 @@ The part no other list curates. This is where the rails get decided.
 - **Resolução BCB 561** (Brazil, effective 1 October 2026) - restricts cross-border FX (eFX) to licensed institutions and prohibits settling it in stablecoin with a foreign counterparty. It closes the crypto shortcut and pushes agent cross-border flows onto licensed orchestration. The payment institution may act as eFX provider up to US$10k per operation without a separate FX license.
 - **Pix Automático** (Brazil, live since 2025) - mandatory for all Pix participants to support; a native recurring standing-authorization framework that maps directly onto the agent mandate primitive.
 - **GENIUS Act** (US, law since July 2025) - the stablecoin framework driving issuers like Circle toward national trust bank charters.
-- **OCC bank & trust charters** - the wave of fintechs, stablecoin issuers, and digital-asset firms becoming regulated US institutions (Circle, Ripple, Paxos, BitGo, Fidelity Digital Assets, and Brazil's Nubank with a conditional approval). The same "money goes through the front door" pattern as Res 561, in the northern hemisphere.
-- Central bank instant-payment mandates across LATAM (SPEI, PSE, Transferencias 3.0) - the regional context for account-to-account agent payments.
+- **OCC bank & trust charters** - the wave of fintechs, stablecoin issuers, and digital-asset firms becoming regulated US institutions (Circle, Ripple, Paxos, BitGo, Fidelity Digital Assets, and Brazil's Nubank with a conditional approval). The same "money goes through the front door" pattern as Res 561.
 
-## Market maps & landscapes
+## Discovery & anti-patterns
 
-- [CodeSpar Agentic Commerce Map](https://codespar.dev/map) - 236 companies across the agentic-commerce stack, with the LATAM execution layer flagged.
-- Agentic Commerce Map (agenticcommercemap.com) - a third-party map of the space.
+How an agent finds what a site offers, and what not to ship.
+
+- [llms.txt](https://llmstxt.org) - a file that tells an agent how to use your site.
+- [schema.org](https://schema.org) - structured product data agents parse.
+- `/.well-known/` conventions - capability discovery (for example `did.json` for agent identity). Note: x402 delivers its terms inline in the HTTP 402 response, not via a well-known file today.
+
+Anti-patterns:
+
+- Do not invent `/.well-known/acp.json` or `/.well-known/x402` files that are in no spec.
+- A checkout API without delegated payment is just a cart, not an agentic checkout.
+- Do not claim NF-e in production when it is homologation-grade.
+
+## Working examples
+
+- [CodeSpar x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - charge an agent to use an API, an MCP server, or a payment link, settled in USDC over x402, with a Pix leg.
+- [x402 vending machine](https://github.com/coinbase/x402) - the canonical per-call agent example from the x402 repo.
+
+## Maintainer's packages
+
+CodeSpar maintains this list. Its own tools are collected here, so the sections above stay vendor-neutral.
+
+- [codespar/codespar](https://github.com/codespar/codespar) - MIT, self-hostable agent runtime for commerce agents (`pip install codespar`, `@codespar/sdk`).
+- [MCP Dev LATAM](https://github.com/codespar/mcp-dev-latam) - 127 MCP servers wrapping LATAM commerce APIs, live in the MCP Registry.
+- [agentic-payments-standards](https://github.com/codespar/agentic-payments-standards) - open proposals: the KYA agent-identity format with an offline verifier, a push-rail extension proposed for ACP with Pix as reference, and a Pix-plus-mandate proposal for Open Agentic Commerce.
+- [x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - the seller-side gateway, MCP, and payment-link examples.
+- [Trust / KYA](https://codespar.dev/trust) - "know the agent, trust the money": verifiable identity, signed mandates, hash-chained receipts.
+- [Agentic Commerce Map](https://codespar.dev/map) - 236 companies across the stack, with the LATAM execution layer flagged.
 
 ## Related lists
 
-Neutral by design, including competitors' lists.
-
-- [xpaysh/awesome-x402](https://github.com/xpaysh/awesome-x402) - the reference x402 list (by xpay). Deep on SDKs and facilitators, US and crypto-first.
+- [xpaysh/awesome-x402](https://github.com/xpaysh/awesome-x402) - the reference x402 rail list (by xpay).
+- [xpaysh/awesome-agentic-commerce](https://github.com/xpaysh/awesome-agentic-commerce) - the commerce-layer companion (by xpay), with a strong protocol comparison and platform matrix.
 - [Merit-Systems/awesome-agentic-commerce](https://github.com/Merit-Systems/awesome-agentic-commerce) - general agentic-commerce resources.
-- [bitrefill/awesome-agentic-payments](https://github.com/bitrefill/awesome-agentic-payments) - protocols, specs, SDKs, and tools for the agentic-commerce stack.
+- [bitrefill/awesome-agentic-payments](https://github.com/bitrefill/awesome-agentic-payments) - protocols, specs, SDKs, and tools.
 - [tsubasakong/awesome-agent-payments-protocol](https://github.com/tsubasakong/awesome-agent-payments-protocol) - AP2, A2A, and x402 resources.
 - [RiccardoBiosas/awesome-agentic-payments](https://github.com/RiccardoBiosas/awesome-agentic-payments) - agentic-payments resources.
-- [sudeepb02/awesome-erc8004](https://github.com/sudeepb02/awesome-erc8004) - curated resources for ERC-8004 trustless agents.
+- [sudeepb02/awesome-erc8004](https://github.com/sudeepb02/awesome-erc8004) - ERC-8004 trustless agents.
 
 ## Reading & research
 
