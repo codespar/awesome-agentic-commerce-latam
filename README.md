@@ -23,6 +23,7 @@ If you only read one thing, read the [Regulation & policy](#regulation--policy) 
 
 - [Protocols & standards](#protocols--standards)
 - [Facilitators & gateways](#facilitators--gateways)
+- [x402 services & endpoints](#x402-services--endpoints)
 - [Wallets, mandates & spend controls](#wallets-mandates--spend-controls)
 - [Agent identity & receipts](#agent-identity--receipts)
 - [Rails (LATAM)](#rails-latam)
@@ -48,8 +49,31 @@ If you only read one thing, read the [Regulation & policy](#regulation--policy) 
 
 - [Coinbase CDP x402 Facilitator](https://docs.cdp.coinbase.com/x402) - reference x402 facilitator and the Bazaar marketplace of agent-payable endpoints, on Base.
 - [xpay](https://xpay.sh) - two-sided MCP-native marketplace and payment layer; runs a public x402 facilitator, supports MPP and cards. US and crypto-first, no Pix or regulated LATAM rails.
-- [CodeSpar Gateway](https://gw.codespar.dev) - turns any endpoint into an agent-payable one (x402 on Base mainnet), paired with a signed mandate and a hash-chained receipt, and bridged to Pix so a local service can be paid in BRL while the agent pays in USDC.
+- [CodeSpar Gateway](https://docs.codespar.dev) - turns any endpoint into an agent-payable one (x402 on Base mainnet), paired with a signed mandate and a hash-chained receipt, and bridged to Pix so a local service can be paid in BRL while the agent pays in USDC.
 - [Cloudflare x402](https://blog.cloudflare.com/x402/) - edge facilitator with payment verification and deferred settlement.
+
+## x402 services & endpoints
+
+The x402 endpoint economy is global, crypto-settled, and moving fast: hundreds of paid APIs are live and the set changes weekly. Latin America is barely represented here yet, which is the opening. Start from the directories, then a representative sample.
+
+Directories:
+
+- [Coinbase Bazaar](https://docs.cdp.coinbase.com/x402) - the official CDP registry of x402-payable endpoints.
+- [x402scan](https://www.x402scan.com) - community-maintained directory of live x402 services.
+- [Agent402 Index](https://agent402.tools) - a public routing index of agent-payable tools.
+
+Representative services, pay-per-call in USDC on Base:
+
+- [Superhighway](https://superhighway.walls.sh) - web search for agents, five tools at $0.001 per query.
+- [Arch Tools](https://archtools.dev) - 58 API tools for agents (web scraping, crypto data, OCR).
+- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints ($0.001-$0.01).
+- [LogicNodes](https://logicnodes.io) - 619 deterministic microservices ($0.001-$0.50).
+- [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models ($0.002-$0.05).
+- [glim.sh](https://glim.sh) - live web, social, and GitHub data via 11 MCP tools.
+- [img402](https://img402.dev) - image hosting for agents ($0.01-$1.00).
+- [x402 Video](https://x402-video.com) - AI video generation ($0.05-$0.50 per video).
+- [EconDash](https://econdash.org) - global macroeconomic data across 15 endpoints.
+- [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
 
 ## Wallets, mandates & spend controls
 
@@ -97,9 +121,7 @@ If you only read one thing, read the [Regulation & policy](#regulation--policy) 
 
 ## Demos & live paywalls
 
-- [x402.codespar.dev](https://x402.codespar.dev) - a live paywall on Base mainnet ($0.001 for market data, $0.01 for premium), with three Basescan-verifiable agent payments.
-- [Superhighway](https://superhighway.walls.sh) - web search API for agents on Base mainnet, five tools at $0.001 per query over x402.
-- [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ cumulative transactions on the network.
+- [CodeSpar x402 paywall](https://basescan.org/tx/0x739d2d12de75bb90fd92c2297b83c1da297b39cfb06fb0e24e09f4d5f32b1b8f) - a paywall on Base mainnet; here an agent pays $0.001 for a third-party API it discovered, verifiable on Basescan.
 - Vibe payments (CodeSpar) - an agent reads its balance, checks the mandate, pays a real store via Pix, and returns an audited receipt.
 
 ## Regulation & policy

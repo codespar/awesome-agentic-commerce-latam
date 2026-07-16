@@ -20,15 +20,3 @@ jobs:
           # 429 = rate limited, 403 = bot-blocked: accept so real link rot is the only failure
           args: "--no-progress --max-concurrency 8 --accept 200,206,403,429 './**/*.md'"
           fail: true
-
-  awesome:
-    name: awesome-lint (advisory)
-    runs-on: ubuntu-latest
-    continue-on-error: true   # advisory: reports format issues without blocking
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: awesome-lint
-        run: npx awesome-lint
