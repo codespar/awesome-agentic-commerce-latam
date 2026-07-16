@@ -195,24 +195,30 @@ The part no other list curates. This is where the rails get decided.
 
 ## Discovery & anti-patterns
 
-How an agent finds what a site offers, and what not to ship.
+How an agent finds what a commerce surface offers, and what not to ship. Real, externally verifiable standards.
 
-Discovery standards:
+| Path or standard | Spec | Purpose |
+|---|---|---|
+| `/llms.txt` | [llmstxt.org](https://llmstxt.org) | A Markdown site map an LLM reads first. |
+| `/.well-known/agent-card.json` | [a2a-protocol.org](https://a2a-protocol.org) | The A2A agent card; the path is in [IANA's well-known registry](https://www.iana.org/assignments/well-known-uris). |
+| schema.org JSON-LD | [schema.org](https://schema.org) | `Product`, `Offer`, and `AggregateOffer` markup an agent parses. |
+| `/robots.txt` | [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309) | Allow or block the agent crawlers: GPTBot, ClaudeBot, Google-Extended, PerplexityBot, CCBot, Amazonbot. |
+| `/.well-known/oauth-protected-resource` | [RFC 9728](https://www.rfc-editor.org/rfc/rfc9728) | Agent OAuth resource metadata. |
+| `/.well-known/ucp` | [UCP guide](https://developers.google.com/merchant/ucp) | UCP capability negotiation (no `.json`); the on-the-wire version is a YYYY-MM-DD date. |
+| `did:web` / `did.json` | W3C DID | Resolvable agent identity a counterparty verifies offline, the KYA approach. |
+| MCP `tools/list` | [modelcontextprotocol.io](https://modelcontextprotocol.io) | How an agent discovers the callable tools a server exposes. |
 
-- [llms.txt](https://llmstxt.org) - a file at your site root that tells an agent how to use it.
-- [schema.org](https://schema.org) - product and offer data as JSON-LD that agents parse.
-- `/.well-known/ucp` - UCP capability discovery (the path has no `.json`).
-- A2A agent cards - a JSON agent card at a well-known URL so agents discover and trust each other.
-- `did:web` / `did.json` - resolvable agent identity, the KYA approach.
-- MCP `tools/list` - how an agent discovers the callable tools a server exposes.
+x402 is the exception: it delivers its payment terms inline in the HTTP 402 response, not via a well-known file.
 
-Note: x402 delivers its payment terms inline in the HTTP 402 response, not via a well-known file today.
+Do not emit. These show up in blog posts and plugin output but are in no active spec: `/.well-known/agentic-commerce.json`, `/.well-known/acp.json`, `/.well-known/ap2.json`, `/.well-known/mcp.json`, `/.well-known/ucp.json` (the real UCP path has no extension), `/.well-known/ai-plugin.json` (a deprecated GPT-plugin manifest), `/agents.txt`, `/ai.txt`.
 
-Anti-patterns:
+Protocol anti-patterns:
 
-- Do not invent well-known files that are in no spec (for example `/.well-known/acp.json`, or `/.well-known/ucp.json` when the spec says `/.well-known/ucp`).
-- A checkout API without delegated payment is just a cart, not an agentic checkout.
-- Do not claim NF-e in production when it is homologation-grade.
+- ACP without `delegate_payment` is just a cart API; the delegated-payment flow is what makes it agentic.
+- UCP without [RFC 9421](https://www.rfc-editor.org/rfc/rfc9421) HTTP message signatures ships a shape any server can serve but no agent can trust.
+- AP2 mandates without verifiable-credential verification are decorative JSON; the verification is the whole authorization argument.
+- Vendoring a spec at HEAD instead of a dated release breaks reproducibility. Pin a dated snapshot.
+- Claiming NF-e in production when it is only homologation-grade. In Brazil the tax document is not optional, and it is not shipped by faking one.
 
 ## Working examples
 
