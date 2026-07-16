@@ -19,8 +19,47 @@ The global agentic-commerce and x402 lists are excellent, and mostly written fro
 
 If you only read one thing, read the [Regulation & policy](#regulation--policy) section. It is the part no other list covers, and it is where the next two years are being decided.
 
+## Quickstart
+
+The fastest way to have an agent move money on LATAM rails is [CodeSpar](https://codespar.dev), the MIT runtime this list is maintained from. Three ways in.
+
+Charge a real Pix in one line, in natural language:
+
+```bash
+pip install codespar
+```
+
+```python
+from codespar import CodeSpar
+
+cs = CodeSpar(api_key="csk_live_...")
+session = cs.create("user_123", preset="brazilian")
+print(session.send("Charge R$500 via Pix").message)
+```
+
+Give a coding agent (Claude, Cursor, Codex) LATAM payment tools over MCP, no rebuild:
+
+```json
+{
+  "mcpServers": {
+    "asaas": { "command": "npx", "args": ["-y", "@codespar/mcp-asaas"], "env": { "ASAAS_API_KEY": "...", "ASAAS_SANDBOX": "true" } },
+    "x402":  { "command": "npx", "args": ["-y", "@codespar/mcp-x402"] }
+  }
+}
+```
+
+Or try one with no key at all:
+
+```bash
+npx @codespar/mcp-brasil-api
+# then ask your agent: "look up CNPJ 00.000.000/0001-91"
+```
+
+Full catalog: [127 MCP servers across six countries](https://github.com/codespar/mcp-dev-latam). Docs and sandbox: [docs.codespar.dev](https://docs.codespar.dev).
+
 ## Contents
 
+- [Quickstart](#quickstart)
 - [Protocols & standards](#protocols--standards)
 - [Facilitators & gateways](#facilitators--gateways)
 - [x402 services & endpoints](#x402-services--endpoints)
@@ -152,8 +191,8 @@ Neutral by design, including competitors' lists.
 
 ## Reading & research
 
-- CodeSpar, "Rails for Robots" - why every agent action eventually settles as a payment, and why a payment is a Pix in São Paulo, USDC over x402 on Base, and a card to a SaaS vendor. [codespar.dev/blog](https://codespar.dev/blog)
-- CodeSpar, Defensibility - the runtime that proves a transaction was authorized, in-mandate, and delivered is what a buyer cannot route around. [codespar.dev/blog](https://codespar.dev/blog)
+- [CodeSpar: Rails for Robots](https://codespar.dev/blog/rails-for-robots) - why every agent action eventually settles as a payment, and why a payment is a Pix in São Paulo, USDC over x402 on Base, and a card to a SaaS vendor.
+- [CodeSpar: Defensibility](https://codespar.dev/blog/defensibility) - the runtime that proves a transaction was authorized, in-mandate, and delivered is what a buyer cannot route around.
 
 ---
 
