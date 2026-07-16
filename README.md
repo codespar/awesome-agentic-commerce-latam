@@ -222,7 +222,7 @@ Protocol anti-patterns:
 
 ## Working examples
 
-- [CodeSpar x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - charge an agent to use an API, an MCP server, or a payment link, settled in USDC over x402, with a Pix leg.
+- [CodeSpar x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - a cookbook for both sides: charge an agent (API, MCP server, or payment link) and pay a paywall (CLI under a mandate, or a runnable `@x402/fetch` buyer), settled in USDC over x402 with a Pix leg.
 - [x402 vending machine](https://github.com/coinbase/x402) - the canonical per-call agent example from the x402 repo.
 
 ## Maintainer's packages
@@ -232,7 +232,7 @@ CodeSpar maintains this list. Its own tools are collected here, so the sections 
 - [codespar/codespar](https://github.com/codespar/codespar) - MIT, self-hostable agent runtime for commerce agents (`pip install codespar`, `@codespar/sdk`).
 - [MCP Dev LATAM](https://github.com/codespar/mcp-dev-latam) - 127 MCP servers wrapping LATAM commerce APIs, live in the MCP Registry.
 - [agentic-payments-standards](https://github.com/codespar/agentic-payments-standards) - open proposals: the KYA agent-identity format with an offline verifier, a push-rail extension proposed for ACP with Pix as reference, and a Pix-plus-mandate proposal for Open Agentic Commerce.
-- [x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - the seller-side gateway, MCP, and payment-link examples.
+- [x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - seller-side gateway, MCP, and payment-link examples, plus a governed buyer (CLI) and a runnable x402 client.
 - [Trust / KYA](https://codespar.dev/trust) - "know the agent, trust the money": verifiable identity, signed mandates, hash-chained receipts.
 - [Agentic Commerce Map](https://codespar.dev/map) - 236 companies across the stack, with the LATAM execution layer flagged.
 
