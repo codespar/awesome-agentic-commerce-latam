@@ -19,47 +19,8 @@ The global agentic-commerce and x402 lists are excellent, and mostly written fro
 
 If you only read one thing, read the [Regulation & policy](#regulation--policy) section. It is the part no other list covers, and it is where the next two years are being decided.
 
-## Quickstart
-
-The fastest way to have an agent move money on LATAM rails is [CodeSpar](https://codespar.dev), the MIT runtime this list is maintained from. Three ways in.
-
-Charge a real Pix in one line, in natural language:
-
-```bash
-pip install codespar
-```
-
-```python
-from codespar import CodeSpar
-
-cs = CodeSpar(api_key="csk_live_...")
-session = cs.create("user_123", preset="brazilian")
-print(session.send("Charge R$500 via Pix").message)
-```
-
-Give a coding agent (Claude, Cursor, Codex) LATAM payment tools over MCP, no rebuild:
-
-```json
-{
-  "mcpServers": {
-    "asaas": { "command": "npx", "args": ["-y", "@codespar/mcp-asaas"], "env": { "ASAAS_API_KEY": "...", "ASAAS_SANDBOX": "true" } },
-    "x402":  { "command": "npx", "args": ["-y", "@codespar/mcp-x402"] }
-  }
-}
-```
-
-Or try one with no key at all:
-
-```bash
-npx @codespar/mcp-brasil-api
-# then ask your agent: "look up CNPJ 00.000.000/0001-91"
-```
-
-Full catalog: [127 MCP servers across six countries](https://github.com/codespar/mcp-dev-latam). Docs and sandbox: [docs.codespar.dev](https://docs.codespar.dev).
-
 ## Contents
 
-- [Quickstart](#quickstart)
 - [Protocols & standards](#protocols--standards)
 - [Facilitators & gateways](#facilitators--gateways)
 - [x402 services & endpoints](#x402-services--endpoints)
@@ -101,17 +62,44 @@ Directories:
 - [x402scan](https://www.x402scan.com) - community-maintained directory of live x402 services.
 - [Agent402 Index](https://agent402.tools) - a public routing index of agent-payable tools.
 
-Representative services, pay-per-call in USDC on Base:
+Services are pay-per-call in USDC on Base. This is a representative slice; the directories above hold the full live set.
+
+Data and search:
 
 - [Superhighway](https://superhighway.walls.sh) - web search for agents, five tools at $0.001 per query.
 - [Arch Tools](https://archtools.dev) - 58 API tools for agents (web scraping, crypto data, OCR).
-- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints ($0.001-$0.01).
-- [LogicNodes](https://logicnodes.io) - 619 deterministic microservices ($0.001-$0.50).
-- [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models ($0.002-$0.05).
 - [glim.sh](https://glim.sh) - live web, social, and GitHub data via 11 MCP tools.
+- [DevDrops](https://devdrops.run) - 22 data APIs for agents ($0.001-$0.10).
+- [Crest x402 Data](https://data.crestsystems.ai) - wallet profiling and crypto data ($0.002-$0.90).
+- [2s.io](https://2s.io) - 35 JSON API endpoints, sub-cent to $0.03.
+
+Markets and finance:
+
+- [EconDash](https://econdash.org) - global macroeconomic data across 15 endpoints.
+- [Mercury402](https://mercury402.uk) - US Treasury and macro data.
+- [Usenami](https://usenami.io) - perp funding and RWA spread API.
+- [Stratalize](https://www.stratalize.com) - 100+ financial-intelligence tools ($0.02-$1.00).
+
+Security and risk:
+
+- [RugGuard](https://rugguard.redfleet.fr) - pre-trade rug-check API ($0.005-$0.05).
+- [x402 Trust Oracle](https://x402oracle.com) - pre-trade trust checks ($0.002).
+- [GlobalAPI](https://globalapi.dev) - 43 compliance endpoints ($0.002-$0.10).
+
+Compute and media:
+
+- [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models ($0.002-$0.05).
+- [zeroreader](https://api.zeroreader.com) - 74 endpoints for LLM, generation, and crypto ($0.001-$0.015).
 - [img402](https://img402.dev) - image hosting for agents ($0.01-$1.00).
 - [x402 Video](https://x402-video.com) - AI video generation ($0.05-$0.50 per video).
-- [EconDash](https://econdash.org) - global macroeconomic data across 15 endpoints.
+- [hundun.app](https://hundun.app) - AI document summarization ($0.05).
+
+Marketplaces and aggregators:
+
+- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints ($0.001-$0.01).
+- [LogicNodes](https://logicnodes.io) - 619 deterministic microservices ($0.001-$0.50).
+- [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
+- [agentsvc.io](https://agentsvc.io) - 20 utility tools ($0.001-$0.008).
 - [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
 
 ## Wallets, mandates & spend controls
