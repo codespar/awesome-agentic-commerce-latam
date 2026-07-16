@@ -195,13 +195,20 @@ The part no other list curates. This is where the rails get decided.
 
 How an agent finds what a site offers, and what not to ship.
 
-- [llms.txt](https://llmstxt.org) - a file that tells an agent how to use your site.
-- [schema.org](https://schema.org) - structured product data agents parse.
-- `/.well-known/` conventions - capability discovery (for example `did.json` for agent identity). Note: x402 delivers its terms inline in the HTTP 402 response, not via a well-known file today.
+Discovery standards:
+
+- [llms.txt](https://llmstxt.org) - a file at your site root that tells an agent how to use it.
+- [schema.org](https://schema.org) - product and offer data as JSON-LD that agents parse.
+- `/.well-known/ucp` - UCP capability discovery (the path has no `.json`).
+- A2A agent cards - a JSON agent card at a well-known URL so agents discover and trust each other.
+- `did:web` / `did.json` - resolvable agent identity, the KYA approach.
+- MCP `tools/list` - how an agent discovers the callable tools a server exposes.
+
+Note: x402 delivers its payment terms inline in the HTTP 402 response, not via a well-known file today.
 
 Anti-patterns:
 
-- Do not invent `/.well-known/acp.json` or `/.well-known/x402` files that are in no spec.
+- Do not invent well-known files that are in no spec (for example `/.well-known/acp.json`, or `/.well-known/ucp.json` when the spec says `/.well-known/ucp`).
 - A checkout API without delegated payment is just a cart, not an agentic checkout.
 - Do not claim NF-e in production when it is homologation-grade.
 
