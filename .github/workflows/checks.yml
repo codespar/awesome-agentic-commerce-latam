@@ -17,6 +17,7 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          # 429 = rate limited, 403 = bot-blocked: accept so real link rot is the only failure
-          args: "--no-progress --max-concurrency 8 --accept 200,206,403,429 './**/*.md'"
+          # accept bot-block/rate-limit/odd-content codes and be patient: volatile third-party
+          # x402 endpoints flake, so real link rot is the only thing that should fail CI
+          args: "--no-progress --max-concurrency 8 --timeout 30 --max-retries 2 --accept 200,206,403,415,429 './**/*.md'"
           fail: true

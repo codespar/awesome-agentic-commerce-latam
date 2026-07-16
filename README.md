@@ -127,7 +127,6 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [Mercury402](https://mercury402.uk) - US Treasury and macro data.
 - [Usenami](https://usenami.io) - perp funding and RWA spread API.
 - [Stratalize](https://www.stratalize.com) - 100+ financial-intelligence tools.
-- [RugGuard](https://rugguard.redfleet.fr) - pre-trade rug-check API.
 - [x402 Trust Oracle](https://x402oracle.com) - pre-trade trust checks.
 - [GlobalAPI](https://globalapi.dev) - 43 compliance endpoints.
 - [tx402.ai](https://tx402.ai) - LLM inference gateway across 20+ EU models.
