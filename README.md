@@ -139,6 +139,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [2s.io](https://2s.io) - 35 JSON API endpoints, sub-cent to $0.03.
 - [EconDash](https://econdash.org) - global macroeconomic data.
 - [Mercury402](https://mercury402.uk) - US Treasury and macro data.
+- [Colombia TRM](https://x402.lagaceta.net/trm) - official Superintendencia Financiera daily USD/COP as prepaid x402 JSON at $0.005 USDC on Base.
 - [Usenami](https://usenami.io) - perp funding and RWA spread API.
 - [Stratalize](https://www.stratalize.com) - 100+ financial-intelligence tools.
 - [x402 Trust Oracle](https://x402oracle.com) - pre-trade trust checks.
