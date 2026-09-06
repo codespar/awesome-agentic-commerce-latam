@@ -183,6 +183,8 @@ What makes it safe to hand a rail to an autonomous agent.
 - [Bridge](https://www.bridge.xyz) - stablecoin orchestration and settlement substrate.
 - Mercado Pago, dLocal, EBANX - large PSPs and cross-border money-movement in the region.
 - [NFE.io](https://nfe.io) and [Focus NFe](https://focusnfe.com.br) - programmatic Brazilian e-invoice (NF-e / NFS-e) issuance. A purchase is not legal in Brazil without the tax document, and no agent-payment protocol issues one, so this is a required layer for the sell-side.
+- [stackin](https://app.stackin.io) - Fiscal API for Brazil. Issue, consult and cancel NF-e / NFS-e through a single REST call; PKCS#12 certificates, XMLDSig, per-UF authorizer selection, contingency and retry are handled server-side. Official [Python](https://github.com/stackin-io/stackin-python-sdk), [Node/TS](https://github.com/stackin-io/stackin-node-sdk), [Go](https://github.com/stackin-io/stackin-go-sdk) and [PHP](https://github.com/stackin-io/stackin-php-sdk) SDKs. Closes the fiscal leg of an agent-completed Pix (or card) sale.
+- [stackin-io/data-source](https://github.com/stackin-io/data-source) - Open daily-updated mirror of the official Brazilian fiscal publications (NF-e, NFC-e, CT-e, MDF-e, BP-e, NFS-e, NF3e, NFCom and 8 other families) from SEFAZ, ADN gov.br and SVRS (22 UFs). Atom feed + JSON manifest per document family; code AGPL-3.0, feeds CC-BY 4.0, mirrored files stay in the public domain. The source-of-truth dataset an agent (or its builder) should validate its NF-e XML against before submitting.
 
 ## Regulation & policy
 
