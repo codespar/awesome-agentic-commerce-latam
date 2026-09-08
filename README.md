@@ -149,6 +149,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [x402 Video](https://x402-video.com) - AI video generation.
 - [hundun.app](https://hundun.app) - AI document summarization.
 - [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints.
+- [Veriton HTML→JSON](https://veriton-dev.github.io/veriton-micro-dev/api/) - metered Base USDC x402 HTML→structured JSON for agents ($0.02/call body, $0.05 fetch+extract); live 402 + prepaid credits; [host](https://seed-trek-trainers-ross.trycloudflare.com), [well-known](https://seed-trek-trainers-ross.trycloudflare.com/.well-known/x402).
 - [LogicNodes](https://logicnodes.io) - 619 deterministic microservices.
 - [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
 - [agentsvc.io](https://agentsvc.io) - 20 utility tools.
