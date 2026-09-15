@@ -224,6 +224,7 @@ Protocol anti-patterns:
 
 - [CodeSpar x402 Monetization Examples](https://github.com/codespar/x402-monetization-examples) - a cookbook for both sides: charge an agent (API, MCP server, or payment link) and pay a paywall (CLI under a mandate, or a runnable `@x402/fetch` buyer), settled in USDC over x402 with a Pix leg.
 - [x402 vending machine](https://github.com/coinbase/x402) - the canonical per-call agent example from the x402 repo.
+- [HostDeFi](https://hostdefi.com) — free token-safety scanner grading tokens A+–F from on-chain checks (mint/freeze authority, liquidity, holder concentration) across Solana + 7 EVM chains. Keyless REST API, hosted MCP, x402 endpoints.
 
 ## Maintainer's packages
 
