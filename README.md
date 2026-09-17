@@ -174,6 +174,7 @@ What makes it safe to hand a rail to an autonomous agent.
 
 - [ERC-8004: Trustless Agents](https://eips.ethereum.org/EIPS/eip-8004) - Ethereum standard extending A2A with Identity, Reputation, and Validation registries. Deployed on mainnet and 20+ networks.
 - FIDO Alliance, Agentic Authentication working groups - device-bound agent authentication feeding AP2.
+- [AffixIO](https://www.npmjs.com/package/affixio) - Agentic Pay Kit (`npm i affixio`) with host-side signed ACTION attestation before pay (x402BeforePay / Agentic Pay / KYA; not person KYC). ([GitHub](https://github.com/AffixIO/SDK)) ([docs](https://www.affix-io.com/agent-trust/))
 
 ## LATAM providers & fiscal
 
