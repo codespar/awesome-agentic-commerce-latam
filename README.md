@@ -148,6 +148,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [img402](https://img402.dev) - image hosting for agents.
 - [x402 Video](https://x402-video.com) - AI video generation.
 - [hundun.app](https://hundun.app) - AI document summarization.
+- [AGENTUM](https://agentum.lat) - Brazilian official-source data, 57 pay-per-call endpoints: sanctions and PEP screening (OFAC, UN, EU, Interpol, CEIS, CNEP, TCU, criminal records), vehicle registry data, and background-check dossiers, sourced from licensed BNMP/CNJ/DETRAN institutional agreements, not scraped.
 - [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints.
 - [LogicNodes](https://logicnodes.io) - 619 deterministic microservices.
 - [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
