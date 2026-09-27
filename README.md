@@ -151,6 +151,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints.
 - [LogicNodes](https://logicnodes.io) - 619 deterministic microservices.
 - [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
+- [x402-ping](https://x402-ping.palmbeachpete.workers.dev) - cheap Base USDC health/interop ping ($0.05 exact on `/premium`, free discovery on `/`, tip/unlock buyer path); useful smoke target before paying larger endpoints. Source: https://github.com/filip-study/x402-ping.
 - [agentsvc.io](https://agentsvc.io) - 20 utility tools.
 - [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
 
