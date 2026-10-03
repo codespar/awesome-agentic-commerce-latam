@@ -153,6 +153,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
 - [agentsvc.io](https://agentsvc.io) - 20 utility tools.
 - [AIsa](https://aisa.network) - an x402 payment processor reporting 10.5M+ transactions.
+- [bilbop](https://api.bilbop.org) - Solana USDC x402 pay-per-call APIs for agents (summarize, token brief, mint info, Piper TTS, brand feedback). Settles on Solana via PayAI, not Base.
 
 ### MPP
 
