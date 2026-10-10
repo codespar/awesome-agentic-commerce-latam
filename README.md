@@ -49,7 +49,7 @@ A rough decision guide. Mix freely; a protocol and a rail are different choices.
 - Autonomous agent-to-agent, or machine-to-machine at the HTTP layer? **AP2** or **x402**.
 - Charging per API call or per tool? **x402** (USDC), or **MPP**.
 - Buyer in Brazil, human or agent? **Pix**; if it recurs, **Pix Automático**.
-- Cross-border settlement? Stablecoin (**USDC** over x402), or licensed **eFX** where the regulator requires it (see [Regulation](#regulation--policy)).
+- Cross-border settlement? Stablecoin (**USDC** over x402), feeless **Nano (XNO)**, or licensed **eFX** where the regulator requires it (see [Regulation](#regulation--policy)).
 - Need the buyer to be governable, with a cap, an allowlist, and a receipt? Put a **signed mandate** on top of whichever rail you chose.
 
 ## Contents
@@ -109,6 +109,7 @@ These sit below the commerce layer and move the money. No FX: each rail carries 
 ### Cards & stablecoins
 
 - [USDC on Base](https://www.circle.com/usdc) - the stablecoin settlement rail for cross-border and x402.
+- [Nano (XNO)](https://nano.org) - a layer-1, self-custodied settle rail with no protocol fee, no per-leg gas and no issuer that can freeze funds; sub-second finality. A live XNO 402-style settlement rail ships on mainnet (an OpenAI-Agents-SDK agent pays an x402 endpoint in self-custodied Nano with a confirmed block) - github.com/dhyabi2/openai-agents-nano-x402, docs/live-proof.md.
 - Card networks - Visa (Intelligent Commerce) and Mastercard (Agent Pay), now live with Brazilian issuers.
 
 ### x402
