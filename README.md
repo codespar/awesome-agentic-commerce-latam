@@ -166,6 +166,7 @@ What makes it safe to hand a rail to an autonomous agent.
 
 - [Crossmint](https://www.crossmint.com) - agent wallets and stablecoin payments infrastructure.
 - [Skyfire](https://skyfire.xyz) - identity and payments for AI agents.
+- [Agent Payment Node](https://github.com/nuanu-ai/agent-payment-node) - Local payment MCP runtime for x402 offers, bounded preparation and receipts on Apple Silicon macOS with Node 24; no Pix or local fiscal integration is claimed.
 - [Catena Labs](https://catenalabs.com) - agent-native financial institution and mandate tooling.
 - [Payman](https://paymanai.com) - human-in-the-loop payment controls for AI agents.
 - [MoltsPay](https://github.com/Yaqing2023/moltspay) - payment infrastructure for agents with spending limits and framework integrations.
