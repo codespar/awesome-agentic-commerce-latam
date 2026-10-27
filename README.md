@@ -250,6 +250,7 @@ CodeSpar maintains this list. Its own tools are collected here, so the sections 
 
 - [CodeSpar: Rails for Robots](https://codespar.dev/blog/rails-for-robots) - why every agent action eventually settles as a payment, and why a payment is a Pix in São Paulo, USDC over x402 on Base, and a card to a SaaS vendor.
 - [CodeSpar: Defensibility](https://codespar.dev/blog/defensibility) - the runtime that proves a transaction was authorized, in-mandate, and delivered is what a buyer cannot route around.
+- [LupaRiel](https://lupariel.com/latam/) - directory of 771 organizations and APIs by agentic payment rail (x402, MPP, AP2, ACP), built in Argentina, with a LATAM note that tracks Mercado Pago, Mercado Libre, Tiendanube/Nuvemshop and VTEX and finds no confirmed native rail adoption as of 2026-10-27. Spanish, with English rail hubs.
 
 ---
 
