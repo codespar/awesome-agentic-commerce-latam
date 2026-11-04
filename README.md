@@ -148,7 +148,7 @@ A representative slice of live services (pay-per-call in USDC on Base); browse t
 - [img402](https://img402.dev) - image hosting for agents.
 - [x402 Video](https://x402-video.com) - AI video generation.
 - [hundun.app](https://hundun.app) - AI document summarization.
-- [PayAPI Market](https://payapi.market) - a marketplace of x402 APIs, 65 endpoints.
+- [PayAPI Market](https://payapi.market) - x402 API marketplace where each listing is settlement-verified with a real paid call and an on-chain USDC receipt; free to list, providers keep 100%.
 - [LogicNodes](https://logicnodes.io) - 619 deterministic microservices.
 - [x402engine](https://x402engine.app) - 74 endpoints across LLMs, generation, crypto, and travel.
 - [agentsvc.io](https://agentsvc.io) - 20 utility tools.
