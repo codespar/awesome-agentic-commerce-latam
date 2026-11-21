@@ -183,6 +183,7 @@ What makes it safe to hand a rail to an autonomous agent.
 - [Bridge](https://www.bridge.xyz) - stablecoin orchestration and settlement substrate.
 - Mercado Pago, dLocal, EBANX - large PSPs and cross-border money-movement in the region.
 - [NFE.io](https://nfe.io) and [Focus NFe](https://focusnfe.com.br) - programmatic Brazilian e-invoice (NF-e / NFS-e) issuance. A purchase is not legal in Brazil without the tax document, and no agent-payment protocol issues one, so this is a required layer for the sell-side.
+- [Global + LATAM AI & x402 Suite](https://api.brunopompeo.com.br) ([GitHub / MCP](https://github.com/brunopompeo1/brazil-ai-fiscal-apis-x402)) - 10 Cloudflare Edge APIs paid per call via x402 v2 (Base USDC, $0.002-$0.010) covering 7-country LATAM tax/bank validation & live FX (MX RFC/CURP/CLABE, AR CUIT/CBU, CL RUT, CO NIT, PE RUC, UY RUT, BR CPF/CNPJ) plus Brazilian NF-e XML auditing, DANFSe RTC (CBS/IBS), FEBRABAN boletos, PIX EMVCo, and BCB PTAX/IPCA.
 
 ## Regulation & policy
 
